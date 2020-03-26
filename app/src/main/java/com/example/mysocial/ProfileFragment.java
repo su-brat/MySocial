@@ -69,12 +69,15 @@ public class ProfileFragment extends Fragment {
                 // Update the Edittext values to the database
 
 
-                aboutET.setFocusable(true);
-                aboutET.setFocusableInTouchMode(true);
-                nameET.setFocusable(true);
-                nameET.setFocusableInTouchMode(true);
-                phoneET.setFocusable(true);
-                phoneET.setFocusableInTouchMode(true);
+                aboutET.setFocusable(false);
+                aboutET.setFocusableInTouchMode(false);
+                aboutET.setClickable(false);
+                nameET.setFocusable(false);
+                nameET.setFocusableInTouchMode(false);
+                nameET.setClickable(false);
+                phoneET.setFocusable(false);
+                phoneET.setFocusableInTouchMode(false);
+                phoneET.setClickable(false);
                 updateBT.setVisibility(View.GONE);
             }
         });
@@ -82,12 +85,15 @@ public class ProfileFragment extends Fragment {
         aboutET = view.findViewById(R.id.aboutET);
         aboutET.setFocusableInTouchMode(false);
         aboutET.setFocusable(false);
+        aboutET.setClickable(false);
         nameET = view.findViewById(R.id.nameET);
         nameET.setFocusable(false);
         nameET.setFocusableInTouchMode(false);
+        nameET.setClickable(false);
         phoneET = view.findViewById(R.id.phoneET);
         phoneET.setFocusableInTouchMode(false);
         phoneET.setFocusable(false);
+        phoneET.setClickable(false);
 
         editabout = view.findViewById(R.id.edit1);
         editabout.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +101,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 aboutET.setFocusable(true);
                 aboutET.setFocusableInTouchMode(true);
+                aboutET.setClickable(true);
                 updateBT.setVisibility(View.VISIBLE);
             }
         });
@@ -104,6 +111,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 nameET.setFocusable(true);
                 nameET.setFocusableInTouchMode(true);
+                nameET.setClickable(true);
                 updateBT.setVisibility(View.VISIBLE);
             }
         });
@@ -113,6 +121,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 phoneET.setFocusable(true);
                 phoneET.setFocusableInTouchMode(true);
+                phoneET.setClickable(true);
                 updateBT.setVisibility(View.VISIBLE);
             }
         });
