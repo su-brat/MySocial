@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         usernameET = (EditText) findViewById(R.id.uname);
         passwordET = (EditText) findViewById(R.id.pwd);
         loginBT = (Button) findViewById(R.id.login);
@@ -230,19 +231,23 @@ public class LoginActivity extends AppCompatActivity {
                             //Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            String email = user.getEmail();
-                            String uid = user.getUid();
+                            if(task.getResult().getAdditionalUserInfo().isNewUser()) {
+                                String email = user.getEmail();
+                                String uid = user.getUid();
 
-                            HashMap<Object,String> hashMap = new HashMap<>();
-                            hashMap.put("Email",email);
-                            hashMap.put("Uid",uid);
-                            hashMap.put("Name","");
-                            hashMap.put("Phone","");
-                            hashMap.put("Image","");
+                                HashMap<Object,String> hashMap = new HashMap<>();
+                                hashMap.put("Email",email);
+                                hashMap.put("Uid",uid);
+                                hashMap.put("Name","");
+                                hashMap.put("Phone","");
+                                hashMap.put("Image","");
+                                hashMap.put("About","");
 
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference reference = database.getReference("Users");
-                            reference.child(uid).setValue(hashMap);
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                DatabaseReference reference = database.getReference("Users");
+                                reference.child(uid).setValue(hashMap);
+                            }
+
 
                             finish();
                             //updateUI(user);

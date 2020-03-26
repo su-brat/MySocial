@@ -3,7 +3,6 @@ package com.example.mysocial;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -40,17 +39,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         emailET = (EditText) findViewById(R.id.uname);
         passwordET = (EditText) findViewById(R.id.pwd);
-        passwordET.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    passwordET.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                }
-                else {
-                    passwordET.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                }
-            }
-        });
         registerBT = (Button) findViewById(R.id.register);
         loginBT = (Button) findViewById(R.id.login);
 
@@ -107,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                     hashMap.put("Name","");
                     hashMap.put("Phone","");
                     hashMap.put("Image","");
+                    hashMap.put("About","");
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference reference = database.getReference("Users");
