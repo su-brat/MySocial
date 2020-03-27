@@ -23,8 +23,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:layout_marginTop="115dp"
-                android:layout_marginLeft="170dp"
-                android:layout_marginRight="30dp"/>
+                android:layout_marginLeft="160dp"
+                android:layout_marginRight="20dp"/>
 
             <TextView
                 android:id="@+id/email"

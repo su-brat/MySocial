@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity {
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user!=null) {
-            Toast.makeText(this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
         }
         else {
             startActivity(new Intent(this, MainActivity.class));
