@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0e0"
+    tools:context=".ChatActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_face_black"
+            android:layout_margin="4dp"
+            app:civ_border_color="#705050"
+            app:civ_border_width="1dp"
+            app:civ_shadow="false"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:text="No name"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:gravity="bottom"/>
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:text="online"
+                android:textColor="@android:color/white"
+                android:gravity="top"/>
+
+        </LinearLayout>
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:src="@drawable/ic_back_white"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@+id/sendLayout"/>
+
+    <LinearLayout
+        android:id="@+id/sendLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp">
+
+        <EditText
+            android:id="@+id/msg"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:gravity="center_vertical"
+            android:inputType="textMultiLine|textCapSentences"
+            android:hint="Type your message"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/rounded_edittext"
+            android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:id="@+id/send"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:src="@drawable/ic_send_black"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

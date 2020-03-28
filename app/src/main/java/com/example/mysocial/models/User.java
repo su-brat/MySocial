@@ -1,4 +1,4 @@
-package com.example.mysocial;
+package com.example.mysocial.models;
 
 public class User {
 

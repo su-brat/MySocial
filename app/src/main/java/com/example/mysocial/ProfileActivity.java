@@ -49,11 +49,17 @@ public class ProfileActivity extends AppCompatActivity {
                     ft2.replace(R.id.container, fragment2, "");
                     ft2.commit();
                     return true;
-                case R.id.nav_users:
-                    UsersFragment fragment3 = new UsersFragment();
+                case R.id.nav_chat:
+                    ChatListFragment fragment3 = new ChatListFragment();
                     FragmentTransaction ft3 = getSupportFragmentManager().beginTransaction();
                     ft3.replace(R.id.container, fragment3, "");
                     ft3.commit();
+                    return true;
+                case R.id.nav_users:
+                    UsersFragment fragment4 = new UsersFragment();
+                    FragmentTransaction ft4 = getSupportFragmentManager().beginTransaction();
+                    ft4.replace(R.id.container, fragment4, "");
+                    ft4.commit();
                     return true;
             }
 
