@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:inputType="textEmailAddress"
+            android:background="@drawable/rectangular_edittext"
             android:hint="Email"
             android:padding="10dp" />
 
@@ -83,6 +84,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:background="@drawable/rectangular_edittext"
                 android:padding="10dp"/>
 
         </com.google.android.material.textfield.TextInputLayout>

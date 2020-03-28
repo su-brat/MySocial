@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:src="@drawable/login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
             android:hint="Username"
+            android:background="@drawable/rectangular_edittext"
             android:padding="10dp" />
 
     </LinearLayout>
@@ -95,6 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Password"
+                android:background="@drawable/rectangular_edittext"
                 android:inputType="textPassword"
                 android:padding="10dp"/>
 
