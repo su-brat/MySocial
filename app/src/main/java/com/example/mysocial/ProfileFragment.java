@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -46,7 +47,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -427,6 +430,7 @@ public class ProfileFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id==R.id.action_logout) {
+            checkUserStatus();
             firebaseAuth.signOut();
             checkUserStatus();
         }
@@ -436,7 +440,11 @@ public class ProfileFragment extends Fragment {
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user!=null) {
-            //Toast.makeText(this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
+            Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
+            String dateTime = DateFormat.format("dd-MM-yy  hh:mm aa", calendar).toString();
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("SignInTimestamp",dateTime);
+            FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).updateChildren(hashMap);
         }
         else {
             startActivity(new Intent(getContext(), MainActivity.class));

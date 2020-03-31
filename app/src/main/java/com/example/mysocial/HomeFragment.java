@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +19,11 @@ import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 
 
 /**
@@ -62,6 +68,7 @@ public class HomeFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if(id==R.id.action_logout) {
+            checkUserStatus();
             firebaseAuth.signOut();
             checkUserStatus();
         }
@@ -71,7 +78,11 @@ public class HomeFragment extends Fragment {
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user!=null) {
-            //Toast.makeText(this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
+            Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
+            String dateTime = DateFormat.format("dd-MM-yy  hh:mm aa", calendar).toString();
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("SignInTimestamp",dateTime);
+            FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).updateChildren(hashMap);
         }
         else {
             startActivity(new Intent(getContext(), MainActivity.class));

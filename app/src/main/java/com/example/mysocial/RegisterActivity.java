@@ -96,6 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                     hashMap.put("Phone","");
                     hashMap.put("Image","");
                     hashMap.put("About","");
+                    hashMap.put("SignInTimestamp","");
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference reference = database.getReference("Users");

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="end">
+
+    <ImageView
+        android:id="@+id/msgstatus"
+        android:src="@drawable/ic_double_check_black"
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"/>
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="300dp"
+        android:text="You have sent this message to the other person"
+        android:textSize="15sp"
+        android:textIsSelectable="true"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/chat_out_textview"
+        android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/timestamp"
+        android:text="12:20 12/07/22"
+        android:textSize="12sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginRight="10dp"/>
+
+</LinearLayout>

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -13,6 +14,11 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -71,11 +77,27 @@ public class ProfileActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user!=null) {
             //Toast.makeText(this, ""+user.getEmail(), Toast.LENGTH_SHORT).show();
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("SignInTimestamp","online");
+            FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).updateChildren(hashMap);
         }
         else {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
+    }
+
+    @Override
+    public void finish() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user!=null) {
+            Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
+            String dateTime = DateFormat.format("dd-MM-yy  hh:mm aa", calendar).toString();
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("SignInTimestamp",dateTime);
+            FirebaseDatabase.getInstance().getReference("Users").child(user.getUid()).updateChildren(hashMap);
+        }
+        super.finish();
     }
 
     @Override

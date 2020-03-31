@@ -181,7 +181,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
-                            FirebaseUser user = mAuth.getCurrentUser();
                             finish();
                         } else {
                             progressDialog.dismiss();
@@ -242,6 +241,7 @@ public class LoginActivity extends AppCompatActivity {
                                 hashMap.put("Phone","");
                                 hashMap.put("Image","");
                                 hashMap.put("About","");
+                                hashMap.put("SignInTimestamp","");
 
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference reference = database.getReference("Users");
