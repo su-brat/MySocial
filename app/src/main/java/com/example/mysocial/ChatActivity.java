@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +31,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -202,7 +205,8 @@ public class ChatActivity extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        String timestamp = String.valueOf(System.currentTimeMillis());
+        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
+        String timestamp = DateFormat.format("dd-MM-yy  hh:mm aa", calendar).toString();
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("Message", message);

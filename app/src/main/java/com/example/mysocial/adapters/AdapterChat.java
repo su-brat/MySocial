@@ -54,12 +54,8 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.Holder> {
         String message = chatList.get(position).getMessage();
         String timestamp = chatList.get(position).getTimestamp();
 
-        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
-        calendar.setTimeInMillis(Long.parseLong(timestamp));
-        String dateTime = DateFormat.format("dd-MM-yy  hh:mm aa", calendar).toString();
-
         holder.msgTV.setText(message);
-        holder.timeTV.setText(dateTime);
+        holder.timeTV.setText(timestamp);
 
         if(holder.isSeen!=null) {
             if (chatList.get(position).isSeen())
