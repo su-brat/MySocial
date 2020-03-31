@@ -84,26 +84,41 @@ public class RegisterActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     progressDialog.dismiss();
 
-                    FirebaseUser user = mAuth.getCurrentUser();
+                    final FirebaseUser user = mAuth.getCurrentUser();
 
-                    String email = user.getEmail();
-                    String uid = user.getUid();
+                    user.sendEmailVerification()
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        String email = user.getEmail();
+                                        String uid = user.getUid();
 
-                    HashMap<Object,String> hashMap = new HashMap<>();
-                    hashMap.put("Email",email);
-                    hashMap.put("Uid",uid);
-                    hashMap.put("Name","");
-                    hashMap.put("Phone","");
-                    hashMap.put("Image","");
-                    hashMap.put("About","");
-                    hashMap.put("SignInTimestamp","");
+                                        HashMap<Object,String> hashMap = new HashMap<>();
+                                        hashMap.put("Email",email);
+                                        hashMap.put("Uid",uid);
+                                        hashMap.put("Name","");
+                                        hashMap.put("Phone","");
+                                        hashMap.put("Image","");
+                                        hashMap.put("About","");
+                                        hashMap.put("SignInTimestamp","");
 
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference reference = database.getReference("Users");
-                    reference.child(uid).setValue(hashMap);
+                                        FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                        DatabaseReference reference = database.getReference("Users");
+                                        reference.child(uid).setValue(hashMap);
 
-                    Toast.makeText(RegisterActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                    finish();
+                                        Toast.makeText(RegisterActivity.this, "A verification email is sent to your email id.", Toast.LENGTH_LONG).show();
+
+                                        mAuth.signOut();
+                                        finish();
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
                 else {
                     progressDialog.dismiss();

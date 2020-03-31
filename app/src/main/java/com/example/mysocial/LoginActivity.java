@@ -181,7 +181,12 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             progressDialog.dismiss();
-                            finish();
+                            if(mAuth.getCurrentUser().isEmailVerified())
+                                finish();
+                            else {
+                                mAuth.signOut();
+                                Toast.makeText(LoginActivity.this, "Verify your email to log in.", Toast.LENGTH_LONG).show();
+                            }
                         } else {
                             progressDialog.dismiss();
                             // If sign in fails, display a message to the user.
@@ -217,7 +222,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
+    private void firebaseAuthWithGoogle(final GoogleSignInAccount acct) {
         //Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -233,13 +238,15 @@ public class LoginActivity extends AppCompatActivity {
                             if(task.getResult().getAdditionalUserInfo().isNewUser()) {
                                 String email = user.getEmail();
                                 String uid = user.getUid();
+                                String name = acct.getDisplayName();
+                                String image = acct.getPhotoUrl().toString();
 
                                 HashMap<Object,String> hashMap = new HashMap<>();
                                 hashMap.put("Email",email);
                                 hashMap.put("Uid",uid);
-                                hashMap.put("Name","");
+                                hashMap.put("Name",name);
                                 hashMap.put("Phone","");
-                                hashMap.put("Image","");
+                                hashMap.put("Image",image);
                                 hashMap.put("About","");
                                 hashMap.put("SignInTimestamp","");
 
