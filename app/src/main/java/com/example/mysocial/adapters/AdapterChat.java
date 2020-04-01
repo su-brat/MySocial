@@ -1,7 +1,6 @@
 package com.example.mysocial.adapters;
 
 import android.content.Context;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mysocial.ChatActivity;
 import com.example.mysocial.R;
 import com.example.mysocial.models.Chat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.squareup.picasso.Picasso;
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 public class AdapterChat extends RecyclerView.Adapter<AdapterChat.Holder> {
 
@@ -40,11 +35,11 @@ public class AdapterChat extends RecyclerView.Adapter<AdapterChat.Holder> {
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if(viewType==MSG_TYPE_RIGHT) {
-            View view = LayoutInflater.from(context).inflate(R.layout.row_chat_left, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.row_chat_right, parent, false);
             return new Holder(view);
         }
         else {
-            View view = LayoutInflater.from(context).inflate(R.layout.row_chat_right, parent, false);
+            View view = LayoutInflater.from(context).inflate(R.layout.row_chat_left, parent, false);
             return new Holder(view);
         }
     }
