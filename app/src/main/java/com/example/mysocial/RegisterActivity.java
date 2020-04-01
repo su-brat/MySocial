@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         String email = user.getEmail();
                                         String uid = user.getUid();
 
-                                        HashMap<Object,String> hashMap = new HashMap<>();
+                                        HashMap<String, Object> hashMap = new HashMap<>();
                                         hashMap.put("Email",email);
                                         hashMap.put("Uid",uid);
                                         hashMap.put("Name","");
@@ -102,6 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         hashMap.put("Image","");
                                         hashMap.put("About","");
                                         hashMap.put("SignInTimestamp","");
+                                        hashMap.put("TypingTo","");
 
                                         FirebaseDatabase database = FirebaseDatabase.getInstance();
                                         DatabaseReference reference = database.getReference("Users");

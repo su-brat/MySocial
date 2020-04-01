@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -82,6 +84,21 @@ public class ChatActivity extends AppCompatActivity {
         nameTV = findViewById(R.id.name);
         statusTV = findViewById(R.id.status);
         msgET = findViewById(R.id.msg);
+        msgET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                updateTypingStatus(selectedUid);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                updateTypingStatus("");
+            }
+        });
         sendBT = findViewById(R.id.send);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -114,13 +131,17 @@ public class ChatActivity extends AppCompatActivity {
                     String name = (String) ds.child("Name").getValue();
                     String image = (String) ds.child("Image").getValue();
                     String signinTimestamp = (String) ds.child("SignInTimestamp").getValue();
+                    String typingTo = (String) ds.child("TypingTo").getValue();
 
                     if(name.length()==0)
                         name = "No name";
                     nameTV.setText(name);
-                    statusTV.setText(signinTimestamp);
+                    if(typingTo.length()==0)
+                        statusTV.setText(signinTimestamp);
+                    else
+                        statusTV.setText("typing");
                     try {
-                        Picasso.get().load(image).placeholder(R.drawable.ic_avatar_white).into(avatarIV);
+                        Picasso.get().load(image).placeholder(R.drawable.avatar).into(avatarIV);
                     }
                     catch (Exception e) {}
                 }
@@ -215,6 +236,13 @@ public class ChatActivity extends AppCompatActivity {
         hashMap.put("Timestamp", timestamp);
         hashMap.put("Seen", false);
         databaseReference.child("Chats").push().setValue(hashMap);
+    }
+
+    private void updateTypingStatus(String to) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("TypingTo", to);
+        ref.updateChildren(hashMap);
     }
 
     private void checkUserStatus() {

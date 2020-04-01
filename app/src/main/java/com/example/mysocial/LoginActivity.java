@@ -241,7 +241,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String name = acct.getDisplayName();
                                 String image = acct.getPhotoUrl().toString();
 
-                                HashMap<Object,String> hashMap = new HashMap<>();
+                                HashMap<String, Object> hashMap = new HashMap<>();
                                 hashMap.put("Email",email);
                                 hashMap.put("Uid",uid);
                                 hashMap.put("Name",name);
@@ -249,6 +249,7 @@ public class LoginActivity extends AppCompatActivity {
                                 hashMap.put("Image",image);
                                 hashMap.put("About","");
                                 hashMap.put("SignInTimestamp","");
+                                hashMap.put("TypingTo","");
 
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                                 DatabaseReference reference = database.getReference("Users");

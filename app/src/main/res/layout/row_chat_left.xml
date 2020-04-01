@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxWidth="300dp"
-        android:text="The other person has sent this message to you"
         android:textSize="15sp"
         android:textIsSelectable="true"
         android:paddingLeft="20dp"
@@ -22,7 +21,6 @@
 
     <TextView
         android:id="@+id/timestamp"
-        android:text="12:20 12/07/22"
         android:textSize="12sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

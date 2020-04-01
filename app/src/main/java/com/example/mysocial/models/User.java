@@ -2,12 +2,12 @@ package com.example.mysocial.models;
 
 public class User {
 
-    String Name, Email, About, Phone, Image, Uid, SignInTimestamp;
+    String Name, Email, About, Phone, Image, Uid, SignInTimestamp, TypingTo;
 
     public User() {
 
     }
-    public User(String About, String Email, String Name, String Phone, String Image, String Uid, String SignInTimestamp) {
+    public User(String About, String Email, String Name, String Phone, String Image, String Uid, String SignInTimestamp, String TypingTo) {
         this.Name = Name;
         this.Email = Email;
         this.About = About;
@@ -15,6 +15,7 @@ public class User {
         this.Image = Image;
         this.Uid = Uid;
         this.SignInTimestamp = SignInTimestamp;
+        this.TypingTo = TypingTo;
     }
 
     public String getName() {
@@ -45,6 +46,10 @@ public class User {
         return SignInTimestamp;
     }
 
+    public String getTypingTo() {
+        return TypingTo;
+    }
+
     public void setUid(String uid) {
         Uid = uid;
     }
@@ -71,5 +76,9 @@ public class User {
 
     public void setSignInTimestamp(String signInTimestamp) {
         SignInTimestamp = signInTimestamp;
+    }
+
+    public void setTypingTo(String typingTo) {
+        TypingTo = typingTo;
     }
 }

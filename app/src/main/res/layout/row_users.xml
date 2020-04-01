@@ -18,8 +18,8 @@
             android:id="@id/avatar"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/ic_face_black"
-            app:civ_border_color="#705050"
+            android:src="@drawable/avatar"
+            app:civ_border_color="@color/colorAccent"
             app:civ_border_width="1dp"
             app:civ_shadow="false"/>
 
